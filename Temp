@@ -1,0 +1,44 @@
+import pygame
+pygame.init()
+
+class Game(object):
+    
+    def __init__(self,size):
+        #size tuple
+        self.screen = pygame.display.set_mode(size) #initializes parent screen
+        self.screen.fill((255,255,255))
+        
+        self.fps = 60
+        self.state = None
+        #self.state_dict = {0:'first',1:'second'}
+
+        self.time = pygame.time.Clock()
+        
+
+        
+    def delay(self): #delays code for given millisecond
+        self.time.tick(self.fps)
+        
+    def update(self): #updates the game display
+        pygame.display.update()
+        
+        
+if __name__ == "__main__":
+
+    game = Game((640,480))
+    game.state = game.state_dict[0]
+    
+    #ground = pygame.image.load('attempt.png')
+    
+    
+    while game.state== 'first':
+        print(game.time.get_fps())
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                game.state = game.state_dict[1]   
+        game.update()
+        game.delay()
+             
+    pygame.quit()   
+
+        
